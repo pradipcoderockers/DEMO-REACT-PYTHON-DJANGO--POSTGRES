@@ -11,6 +11,27 @@
 
 ## Enter the Terminal or the Command Prompt at root level of the project
 
+### Create .env files on root directory 
+
+ENV=dev
+POSTGRES_DB=<dbname>
+POSTGRES_USER=<db_user>
+POSTGRES_PASSWORD=<db_user>
+POSTGRES_HOST=<host>
+POSTGRES_SSL_MODE=off
+NODE_ENV=dev
+  
+  
+### Create .env files inside the djnago-backend directory 
+
+ENV=dev
+POSTGRES_DB=<dbname>
+POSTGRES_USER=<db_user>
+POSTGRES_PASSWORD=<db_user>
+POSTGRES_HOST=<host>
+POSTGRES_SSL_MODE=off
+NODE_ENV=dev  
+
 ## Run `docker-compose up` to first build and then run the project (it tooks several minutes the first time you run the command).
 
 ## Go to [http://127.0.0.1:3001/](http://127.0.0.1:3001/) to see the React app running.
