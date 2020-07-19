@@ -1,0 +1,42 @@
+<div class="right-data">
+    <div class="table-responsive">
+	
+	<div class="row" *ngIf="productsloading">
+			
+			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-3 hover" >
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 " >
+					</div>
+					<img src ="assets/images/dribbble.gif" style="text-align:center;width:50%;" >
+			</div>
+    </div>
+	
+        <div class="row" [ngClass]="loaded?'show':'hide'">
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" >
+  <thead>
+    <tr>
+       <th>ORDER NO</th>
+	    <th>ACTION</th>
+  </tr>	
+  </thead>
+   <tbody>
+     <tr *ngFor="let  orderOne of orderList ">
+       
+      <td   >{{ orderOne.orderid  }}</td>
+    
+	  
+	  
+	  <td ><button class="modal-trigger view-btn" (click)="openN(content,orderOne)" >VIEW</button></td>
+	   
+    </tr>
+  </tbody>
+  </table>
+  
+  
+  </div>
+  
+
+</div>
+</div>
+
+
+     

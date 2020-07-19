@@ -1,0 +1,89 @@
+<div class="right-data">
+  <div class="detail-user-profile">
+      <div class="left-user-data">
+         <div class="left-user-img">
+          <figure>
+              <img src="assets/images/profile.jpg" alt="">
+          </figure>
+      </div>
+        </div>
+        <div class="right-user-data">
+            <h4>PROFILE</h4>
+            <form #myform="ngForm" (ngSubmit)="register(myform)" class="form form-register">
+            <div class="right-inner-left-data">
+               <div class="inner-main">
+                <div class="left-inner-detail">
+                    <label>First Name</label>
+                </div>
+                <div class="right-inner-detail">
+                  <input type="text" ngModel name="firstName" id="firstName">
+                </div>
+            </div>  
+            
+             <div class="inner-main">
+                <div class="left-inner-detail">
+                    <label>Last Name</label>
+                </div>
+                <div class="right-inner-detail">
+                  <input type="text" name="lastName" class="mat-input" id="lastName" ngModel>
+                </div>
+            </div>  
+
+            <div class="inner-main">
+              <div class="left-inner-detail">
+                  <label>User Name</label>
+              </div>
+              <div class="right-inner-detail">
+                <input type="text" name="username" class="mat-input" id="username" ngModel>
+              </div>
+          </div>
+            
+                 <div class="inner-main">
+                <div class="left-inner-detail">
+                    <label>Password</label>
+                </div>
+                <div class="right-inner-detail">
+                  <input type="password" ngModel name="password1" class="mat-input" id="password1">
+                </div>
+            </div>  
+            
+             <div class="inner-main">
+                <div class="left-inner-detail">
+                    <label>Repeat Password</label>
+                </div>
+                <div class="right-inner-detail">
+                  <input type="text" ngModel name="password2" class="mat-input" id="password2">
+                </div>
+            </div>  
+            
+            <div class="inner-main">
+                <div class="left-inner-detail">
+                    <label>Email</label>
+                </div>
+                <div class="right-inner-detail">
+                  <input type="email" name="emailId" class="mat-input" id="emailId" ngModel>
+                </div>
+            </div> 
+
+            <div class="inner-main">
+              <div class="left-inner-detail">
+                  <label>User Type</label>
+              </div>
+              <div class="right-inner-detail">
+                <select ngModel name="role" required>
+                  <option value="" disabled selected>select a role</option>
+                  <option *ngFor="let role of roles" [value]="role.id">{{role.name}}</option>
+                </select>
+              </div>
+          </div> 
+            
+              
+            
+            </div>
+            <button type="submit" class="editProfileBtn" >Save</button>  
+          </form>
+        </div>
+                                                        
+               
+    </div>
+  </div>

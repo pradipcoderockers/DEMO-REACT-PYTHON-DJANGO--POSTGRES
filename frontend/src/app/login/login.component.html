@@ -1,0 +1,53 @@
+<!--The content below is only a placeholder and can be replaced.-->
+
+<div class="right-data">
+<div class="login-main">
+
+    <!--login-page e-catelog div-->
+    <div class="e-catelog">
+        <figure>
+            <img src="./assets/images/logo.png" alt="e-catelog">
+        </figure>
+        <div class="line-center line-center-main"></div>
+        <div class="line-center"></div>
+        <div class="line-center"></div>
+    </div>
+    <!--login-page login-form div-->
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="login-form">
+        <div class="login-form-field">
+            <figure>
+                <img src="./assets/images/logo.png" alt="logo">
+            </figure>
+            <div class="form-username">
+                <label for="username" class="label-style">Username</label><br>
+                <input type="text" class="form-control" formControlName="username" id="username" autocomplete="off" placeholder="Your Email *">
+                                  <div class="error" *ngIf="loginForm.controls['username'].hasError('required') && loginForm.controls['username'].touched">Username is required</div> 
+            </div>
+            <div class="form-password">
+                <label for="pass-word" class="label-style">Password</label><br> 
+                <input type="password" class="form-control" formControlName="password" id="pwd" autocomplete="off" placeholder="Your Password *">
+                <div class="error" *ngIf="loginForm.controls['password'].hasError('required') && loginForm.controls['password'].touched">Password is required</div>
+            </div>
+            <div class="keep-log">
+                <span class="check-box"><input type="checkbox"><p> Keep me Sign in </p></span>
+            </div>
+            <div >
+                <button class="btnSubmit" [disabled]="loginForm.invalid">Login</button>
+                <div *ngIf="invalidLogin" class="error">
+                    <div>Invalid credentials.</div>
+                </div>
+                
+            </div>
+            <div class="line-form"></div>
+            <div class="forgot-password">
+                <a href="#">Forgot Password?</a>
+            </div>
+        </div>
+        
+    </div>
+  </form>
+  
+  
+  </div>
+</div>

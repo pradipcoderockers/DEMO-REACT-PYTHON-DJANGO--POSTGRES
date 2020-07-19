@@ -1,0 +1,50 @@
+<div class="right-data">
+<div class="main-box">
+    <div class="container">
+      <div class="table table-fav">
+	  
+	  <div style="margin: 0px 0px 0px 30%; cursor:pointer"   >
+			  
+			 
+			 
+			 
+			 <select [(ngModel)]="listdata" (ngModelChange)="loadpagedata($event)" name="listdata">
+				<option>SELECT FAVOURITE LIST</option>
+				  <option *ngFor="let favouriteListone of favouriteList" [ngValue]="favouriteListone.id">
+					  {{favouriteListone.name}}
+				  </option>
+			  </select>
+			  
+	 </div>
+		
+        <table width="100%">
+      <thead>
+        <tr>
+          <th>IMAGE</th>
+          <th>NAME</th>
+          <th>PRODUCT CODE</th>
+           <th>ADD TO CART</th>
+          <th>REMOVE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cart of cartItems">
+        <td><a class="fav-frame"><img src="assets/images/{{cart.largeImgUrl}}"></a></td>
+        <td><a>{{cart.name?cart.name:'N/A'}}</a></td>
+        <td><a>{{cart.code}}</a></td>
+        <td><a class="fav-text" (click)="addtoCartFvrt(cart)"><i class="fas fa-shopping-cart"></i>ADD TO CART</a></td>
+        <td><a class="fav-btn-remove" (click)="removeFromCart(cart)">REMOVE</a></td>
+        </tr>
+                
+         
+        
+      </tbody>
+    </table>
+      </div>
+       
+      
+      
+    </div>
+</div>
+
+</div>

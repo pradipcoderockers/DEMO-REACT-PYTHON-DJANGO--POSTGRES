@@ -1,0 +1,45 @@
+<div class="right-data">
+  <div class="product-segment-slider">
+   <div class="container">
+    <div class="product-segment-center">
+	
+	<div class="row" *ngIf="subcategoriesloading">
+			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-3 hover" >
+					<img src ="assets/images/dribbble.gif" style="text-align:center;width:50%;" >
+			</div>
+    </div>
+	<div class="assembly_btn" *ngIf="subcategories.length>0 &&  leafspringcheck == 'LEAF SPRING' && subcategories[0].flagpro==1"> 
+					<button type="button" (click)="getAssmbly()">Get Assembly </button>
+	</div>
+	 
+      <div class="row" *ngIf="subcategories.length>0">
+          <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 hover" *ngFor="let category of subcategories;" >
+              <div class="car-model-box" (click)="openSubCat($event, category)">
+                  <a>
+                      <figure><img src="assets/images/{{category.largeImgName}}" alt=""></figure>
+                      <h5>{{category.name | uppercase}} </h5>
+                  </a>
+				  
+              </div>
+				 <div class="checkbox_assembly" *ngIf="subcategories.length>0 && leafspringcheck == 'LEAF SPRING' && subcategories[0].flagpro==1"> 
+					<input type="checkbox" name="saveproid"  (click)="valuesaveAssembely(category.id)" value="{{category.id}}" />
+				 </div>
+  
+          </div>
+  
+    </div>
+	
+	
+	
+	<div class="row" *ngIf="subcategories.length==0">
+			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-12 hover" >
+         <img src="assets/images/product-not-found.png" class="product-not-found-img">
+        <p class="product-not-available">PRODUCT NOT AVAILABLE NOW, PLEASE CHECK AFTER SOMETIME...</p>
+			</div>
+    </div>
+    </div>
+  </div>   
+  </div>
+  
+ 
+

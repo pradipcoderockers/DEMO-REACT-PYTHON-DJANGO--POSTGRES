@@ -1,0 +1,156 @@
+<div class="main_head">
+  <div class="maininnerleft">
+      <figure><a [routerLink]="['/']"><img src="assets/images/logo.png" alt="logo"></a></figure>
+  </div>
+  <div class="maininnerright">
+     <div class="innerrighticon">
+		<span *ngIf="!loginuser">
+		<strong>It Will help you to find DBP & MRP </strong>
+		<select name=slist (ngModelChange)="selectChange($event)" [(ngModel)]="slist" >
+			<option value="">From where you Are? </option>
+			<option value="Andaman and Nicobar Islands">Andaman and Nicobar Islands</option>
+			<option value="Andhra Pradesh">Andhra Pradesh</option>
+			<option value="Arunachal Pradesh">Arunachal Pradesh</option>
+			<option value="Assam">Assam</option>
+			<option value="Bihar">Bihar</option>
+			<option value="Chandigarh">Chandigarh</option>
+			<option value="Chhattisgarh">Chhattisgarh</option>
+			<option value="Dadra and Nagar Haveli">Dadra and Nagar Haveli</option>
+			<option value="Daman and Diu">Daman and Diu</option>
+			<option value="Delhi">Delhi</option>
+			<option value="Goa">Goa</option>
+			<option value="Gujarat">Gujarat</option>
+			<option value="Haryana">Haryana</option>
+			<option value="Himachal Pradesh">Himachal Pradesh</option>
+			<option value="Jammu & Kashmir">Jammu and Kashmir</option>
+			<option value="Jharkhand">Jharkhand</option>
+			<option value="Karnataka">Karnataka</option>
+			<option value="Kerala">Kerala</option>
+			<option value="Lakshadweep">Lakshadweep</option>
+			<option value="Madhya Pradesh">Madhya Pradesh</option>
+			<option value="Maharashtra">Maharashtra</option>
+			<option value="Manipur">Manipur</option>
+			<option value="Meghalaya">Meghalaya</option>
+			<option value="Mizoram">Mizoram</option>
+			<option value="Nagaland">Nagaland</option>
+			<option value="Orissa">Orissa</option>
+			<option value="Pondicherry">Pondicherry</option>
+			<option value="Punjab">Punjab</option>
+			<option value="Rajasthan">Rajasthan</option>
+			<option value="Sikkim">Sikkim</option>
+			<option value="Tamil Nadu">Tamil Nadu</option>
+			<option value="Tripura">Tripura</option>
+			<option value="Uttarakhand">Uttarakhand</option>			
+ 			<option value="Uttar Pradesh">Uttar Pradesh</option>
+			<option value="West Bengal">West Bengal</option>
+		</select>
+		</span>
+         <span><a [routerLink]="['/fave']">FAVOURITE<i class="fas fa-heart" style="color:red;"></i></a></span>
+         <span><a [routerLink]="['/cart']">CART<i class="fas fa-shopping-cart"></i></a></span>
+          <span class="dropdown-profile"><a [routerLink]="['/profile']" id="user-profile"><i class="fas fa-user-circle"></i></a>
+                <div class="dropdown-content-user">
+				    <a [routerLink]="['/order']"  *ngIf="loginuser">My Order</a>
+					 <a [routerLink]="['/favouriteadd']"  *ngIf="loginuser">My Favourite List</a>
+                    <a [routerLink]="['/profile']"  *ngIf="loginuser">My Profile</a>
+                    <!--a [routerLink]="['/editprofile']" *ngIf="loginuser">Edit Profile</a-->
+                    <a [routerLink]="['/userProfile']" *ngIf="!loginuser"> Create User Profile</a>
+                   <!-- <a href="#">Change Password</a>
+                    <a href="#">Settings</a> -->
+                    <a [routerLink]="['/login']" *ngIf="!loginuser">Login</a>
+                    <a [routerLink]="['/logout']" *ngIf="loginuser">Log Out</a>
+               </div>
+          </span>
+     </div>  
+  </div>
+</div>
+  <div class="nav">
+    
+      <span class="arrow"><a *ngIf="router.url!='/'" class="fingerPoint" (click)="backClicked()"><i class="fas fa-arrow-left"></i></a>
+<!--       
+	   <a class="fingerPoint" (click)="forwardClicked()"><i class="fas fa-arrow-right"></i></a>
+		-->
+		</span>
+		
+            <span class="home-icon"><a href="#"><i class="fas fa-home"></i>HOME</a></span>
+			<span class="category-icon"> 
+			
+			<a *ngFor="let catbrud of catagoryService.topcat;  last as isLast" (click)="(!isLast)?openSubCatBrud($event, catbrud):''">{{catbrud.name?(!isLast)?catbrud.name+" /":catbrud.name:''}} </a>
+			
+			</span>
+   </div>
+
+  
+<div class="main-box">
+  <div class="left-data">
+      <div class="category-left-side-title">CATEGORY</div>
+      <div class="list" >
+          <ul>
+          <li *ngFor="let category of categories;" (click)="openSubCat($event, category)" class="fingerPoint" >
+              <a><img src="../../assets/images/folder.png" alt="folder">{{category.name}}</a>
+          </li>
+		  
+		  <li *ngIf="!categories;"  class="fingerPoint">
+              <a>Loding..</a>
+          </li>
+          
+          
+          </ul>
+      </div>
+      <div class="form-box">
+  <div class="search-head">SEARCH BY</div>
+  <div class="category">
+    <div class="category-name">CATEGORY</div>
+    <div class="category-box">
+        <select [(ngModel)]="selectedCategory" class="select-form" (change)="searchCategory()" >
+          <option [ngValue]="null" disabled >select a Category</option>
+          <option *ngFor="let cat of categories" [ngValue]="cat"   >{{cat.name | uppercase}}</option>
+        </select>
+    </div>
+  </div>
+  <div class="category">
+    <div class="category-name">SEGMENT</div>
+    <div class="category-box">
+        <select [(ngModel)]="selectedSegment" class="select-form" (change)="searchSegment()">
+            <option value="" disabled selected>select a Segment</option>
+            <option *ngFor="let segment of segments" [ngValue]="segment">{{segment.name | uppercase }}</option>
+          </select>
+    </div>
+  </div>
+  <div class="category">
+    <div class="category-name">BRAND</div>
+    <div class="category-box">
+        <select [(ngModel)]="selectedBrand" class="select-form" (change)="searchBrand()">
+            <option value="" disabled selected>select a Brand</option>
+            <option *ngFor="let brand of brands" [ngValue]="brand">{{brand.name | uppercase}}</option>
+          </select>
+    </div>
+  </div>
+  <div class="category">
+    <div class="category-name">MODEL</div>
+    <div class="category-box">
+        <select [(ngModel)]="selectedModel" class="select-form" (change)="searchModel()">
+            <option value="" disabled selected>select a Brand</option>
+            <option *ngFor="let model of models" [ngValue]="model">{{model.name | uppercase }}</option>
+        </select>
+    </div>
+  </div>
+        <p style="text-align: center; color: red; font-size: 1.5rem; font-weight: bold">OR</p>
+  <div class="category">
+    <div class="category-name">PRODUCT CODE </div>
+    <div class="category-box">
+      <input [(ngModel)]="searchPartCode" (keydown)="someMethod($event)" name="part-desc" type="text">
+    </div>
+  </div>
+  <!-- <div class="category">
+    <div class="category-name">PART DESC</div>
+    <div class="category-box">
+      <input name="part-desc" type="text">
+    </div>
+  </div> -->
+  <div class="category btn-box">
+    <input type="button" id=" " value="SEARCH" (click)="searchByPartCode()" class="search btn-primary">
+    <input type="button" id=" " value="RESET" class="search btn-primary" (click)="resetSearch()" style="background: #424143;">
+  </div>
+</div>
+  </div>
+  </div>

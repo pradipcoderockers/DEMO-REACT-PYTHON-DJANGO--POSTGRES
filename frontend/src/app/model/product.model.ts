@@ -1,0 +1,41 @@
+import { Item } from './item.model';
+
+export class Product {
+id: number;
+name: string;
+code: string;
+shortDesc: string;
+longDesc: string;
+partNumber: string;
+application: string;
+section: string;
+chPosition: string;
+chSize: string;
+size: string;
+descriptionSize: string;
+shDetails: string;
+packQty: number;
+standardPackaging: string;
+mrpPrice:number;
+mrpCurrency: string;
+unitPrice:number;
+unitCurrency: string;
+customerPrice:number;
+customerCurrency: string;
+dealerPrice:number;
+dealerCurrency: string;
+particuler: string;
+suitableFor: string;
+largeImgAltText: string;
+largeImgName: string;
+largeImgUrl: string;
+smallImgAltText: string;
+smallImgLang: string;
+smallImgName: string;
+smallImgType: number;
+smallImgUrl: string;
+weight: string;
+items: Array<Item>;
+products:Array<Item>;
+varientcode: string;
+}

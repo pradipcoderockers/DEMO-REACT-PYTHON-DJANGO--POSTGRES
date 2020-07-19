@@ -4,42 +4,39 @@ volumes:
     backend-data:
 
 services:
-  posgres-database:
+  db:
     build:
-      context: ./posgres-database
+      context: ./db
       dockerfile: ./Dockerfile
     ports:
-      - "5434:5432"
+      - "5436:5432"
     env_file:
       - .env
     volumes:
-      - ./posgres-database/sql/:/home
+      - ./db/sql/:/home
 
-  django-backend:
+  backend:
     env_file:
-      - ./django-backend/.env
+      - ./backend/.env
     build:
-      context: ./django-backend
+      context: ./backend
       dockerfile: ./Dockerfile
     volumes:
-      - ./django-backend/:/code/
+      - ./backend/:/code/
       - backend-data:/data
     ports:
-      - "8081:8080"
-      - "4000:4000"
+      - "8000:8000"
+      - "8888:8888"
     depends_on:
-      - posgres-database
-
-  react-frontend:
-    build:
-      context: ./react-frontend
-      dockerfile: ./Dockerfile
-    volumes:
-      - './react-frontend:/app'
-      - '/app/node_modules'
+      - db
+  frontend:
+    build: frontend
     ports:
-      - '3001:3000'
-      - '5000:5000'
-    environment:
-      - NODE_ENV=development
+      - '4200:4200'
+      - '49152:49152'
+    volumes:
+      - './frontend/src:/home/app/frontend/src'
+    env_file: .env
+    command: npm start
       
+    

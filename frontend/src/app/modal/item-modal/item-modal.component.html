@@ -1,0 +1,312 @@
+<div class="modal-sandbox"></div>
+    <div class="modal-box">
+			<!--
+			<ng-flash-message></ng-flash-message>
+-->
+
+<div id="closealert" class="alert alert-{{alertClass}} fade in alert-dismissible" style="margin-top:18px;" [hidden]="!successmsg">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+			 {{successmsg}}
+		</div>
+		
+                    <div class="modal-header" *ngIf="item.productId">
+                        <div class="close-modal"><span CLASS="model-head-detail">DETAILS OF PRODUCT CODE : {{item.code}}</span><span style="color:red; font-size:1.4rem;" (click)="activeModal.dismiss('Cross click')">&#10006;</span></div>
+
+                    </div>
+                    <div class="modal-body" *ngIf="item.productId">
+                        <div class="modal-form-style">
+                            <div class="part-name-modal">
+                                <div class="part-model-left">
+                                    <p>PRODUCT CODE</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.code}} [{{item.name}}]</p>
+                                </div>
+                            </div>
+							
+							
+							<div class="part-name-modal" *ngIf="namepro">
+                                <div class="part-model-left">
+                                    <p>NAME </p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{namepro}}</p>
+                                </div>
+
+                            </div>
+							<!--div class="part-name-modal" *ngIf="item.name">
+                                <div class="part-model-left">
+                                    <p>TYPE </p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.name}}</p>
+                                </div>
+
+                            </div-->
+							
+							<div class="part-name-modal"  >
+                                <div class="part-model-left">
+                                    <p>WEIGHT </p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>N/A</p>
+                                </div>
+
+                            </div>
+							 
+
+							<div class="part-name-modal" *ngIf="item.suitableFor">
+                                <div class="part-model-left">
+                                    <p>SUITABLE FOR</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.suitableFor}}</p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="part-name-modal" *ngIf="item.length">
+                                <div class="part-model-left">
+                                    <p>LENGTH(INCH)</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.length}}</p>
+                                </div>
+
+                            </div>
+							<div class="part-name-modal" >
+                                <div class="part-model-left">
+                                    <p>Varient Code</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.varientcode}}</p>
+                                </div>
+
+                            </div>
+
+                            <div class="part-name-modal">
+                                <div class="part-model-left">
+                                    <p>
+									{{(!userName)?'MRP(Rs)':'DBP(Rs)'}}
+									</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{ (!userName)?item.mrp:item.dbp }}</p>
+                                </div>
+
+                            </div>
+                            <div class="part-name-modal">
+                                <div class="part-model-left">
+                                    <p>ADD TO CART</p>
+                                </div><span class="colon-modal">:</span>
+
+                                <div class="part-model-right">
+                                    <p><span><input #qty type="number" min=1><i class="fas fa-shopping-cart" style="color:red;" (click)=addToCart(item,qty.value)></i></span></p>
+                                </div>
+							
+                            </div>
+							<div class="part-name-modal" style="border-bottom: none !important">
+							<button class="modal-trigger view-btn" (click)=addToCart(item,qty.value)>ADD TO CART</button>
+							 </div>
+
+                            <div class="zooming-img" *ngIf="item.largeImgName">
+                                <img id="myImg" src="assets/images/{{item.largeImgName}}" class="open-img">
+                                <div id="myModals" class="modals">
+                                    <span class="closes">&times;</span>
+                                    <img class="modal-contents" id="img01">
+
+                                </div>
+                                
+                            </div>
+
+
+
+
+
+                        </div>
+                        <!-- <div class="heading-text">
+                            <p>APPLICABLE GROUPS/PRODUCT CODE [230200]</p>
+                        </div>
+                        <div class="modal-table">
+                            <table>
+                                <thead>
+                                    <th>S.No.</th>
+                                    <th>Group Name</th>
+                                    <th>Model DESC.</th>
+                                </thead>
+                                <tbody>
+                                    <tr>
+                                        <td>1</td>
+                                        <td>230200 [2302 SUMO [RR]P.B]</td>
+                                        <td>TATA SUMO [RR]P.B LIGHT PARABOLIC SUSPENTION 3/L BOTH SIDE &#8709; 8.5</td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </div> -->
+                    </div>
+     
+					<div class="modal-header" *ngIf="!item.productId">
+                        <div class="close-modal"><span CLASS="model-head-detail">DETAILED SPECIFICATIONS </span><span style="color:red; font-size:1.4rem;" (click)="activeModal.dismiss('Cross click')">&#10006;</span></div>
+
+                    </div>
+					<div class="modal-body" *ngIf="!item.productId">
+
+                            <div class="{{(item.largeImgName)?'col-xs-6':'col-xs-12'}} ">
+                            <div class="part-name-modal">
+                                <div class="part-model-left">
+                                    <p>ITEMS</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p> {{transform(item.code )}} </p>
+                                </div>
+                            </div>
+							 
+							<div class="part-name-modal" *ngIf="item.particuler">
+                                <div class="part-model-left">
+                                    <p> {{( item.comefrom=='LEAF SPRING' ||  item.comefrom=='LIFT AXLE COMPONENTS' || item.comefrom=='TRAILER SUSPENSION' )?'NAME':'PARTICULAR'}} </p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.particuler}}</p>
+                                </div>
+
+                            </div>
+
+							
+							
+
+                            <div class="part-name-modal" *ngIf="item.length">
+                                <div class="part-model-left">
+                                    <p>LENGTH(INCH)</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.length}}</p>
+                                </div>
+
+                            </div>
+							<div class="part-name-modal" *ngIf="item.partNumber">
+                                <div class="part-model-left">
+                                    <p>PART NUMBER</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.partNumber}}</p>
+                                </div>
+
+                            </div>
+							<div class="part-name-modal" *ngIf="item.chPosition">
+                                <div class="part-model-left">
+                                    <p>C.H.&#8709;[mm] & POSITION</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.chPosition}}</p>
+                                </div>
+
+                            </div>
+							<div class="part-name-modal" *ngIf="item.shDetails">
+                                <div class="part-model-left">
+                                    <p>S.H.DETAIL[mm]</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.shDetails}}</p>
+                                </div>
+
+                            </div>
+							<div class="part-name-modal" *ngIf="item.standardPackaging && ( item.comefrom=='LIFT AXLE COMPONENTS' || item.comefrom=='LEAF SPRING ALLIED' || item.comefrom== 'TRAILER SUSPENSION')">
+                                <div class="part-model-left">
+                                    <p>STANDARD PACKING</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.standardPackaging}}</p>
+                                </div>
+
+                            </div>
+							
+							<div class="part-name-modal" *ngIf="item.varientcode">
+                                <div class="part-model-left">
+                                    <p>Varient Code</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.varientcode}}</p>
+                                </div>
+
+                            </div>
+							 
+							 
+							 <div class="part-name-modal" *ngIf="item.suitableFor">
+                                <div class="part-model-left">
+                                    <p>{{ (item.comefrom !='LEAF SPRING' && item.comefrom !='LIFT AXLE COMPONENTS' && item.comefrom !='TRAILER SUSPENSION' && item.comefrom !='LEAF SPRING ALLIED')?'NAME':'SUITABLE FOR' }}</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.suitableFor}}</p>
+                                </div>
+
+                            </div>
+ 							 <div class="part-name-modal" *ngIf="item.weight">
+                                <div class="part-model-left">
+                                    <p>WEIGHT(KG)</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.weight}}</p>
+                                </div>
+
+                            </div>
+							
+							<div class="part-name-modal" *ngIf="item.application && item.comefrom=='LEAF SPRING ALLIED'">
+                                <div class="part-model-left">
+                                    <p>NAME </p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.application}}</p>
+                                </div>
+
+                            </div>
+							
+							
+							<div class="part-name-modal" *ngIf="item.size">
+                                <div class="part-model-left">
+                                    <p>SIZE</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{item.size}}</p>
+                                </div>
+
+                            </div>
+
+							<div class="part-name-modal" *ngIf="item.comefrom=='LIFT AXLE COMPONENTS' || item.comefrom=='LEAF SPRING ALLIED' || item.comefrom== 'TRAILER SUSPENSION'">
+                                <div class="part-model-left">
+                                    <p>
+									{{(!userName)?'MRP(Rs)':'DBP(Rs)'}}
+									</p>
+                                </div><span class="colon-modal">:</span>
+                                <div class="part-model-right">
+                                    <p>{{ (!userName)?item.mrpPrice:item.dealerPrice }}</p>
+                                </div>
+
+                            </div>
+							
+							<div class="part-name-modal" *ngIf="item.comefrom=='LIFT AXLE COMPONENTS' || item.comefrom=='LEAF SPRING ALLIED' || item.comefrom== 'TRAILER SUSPENSION'">
+                                <div class="part-model-left">
+                                    <p>ADD TO CART</p>
+                                </div><span class="colon-modal">:</span>
+
+                                <div class="part-model-right">
+                                    <p><span><input type="text" [(ngModel)]="qtyN"   min=1><i class="fas fa-shopping-cart" style="color:red;" (click)="addToCart(item,qtyN,'pro')"></i></span></p>
+                                </div>
+							 
+                            </div>
+							<div class="part-name-modal" *ngIf="item.comefrom=='LIFT AXLE COMPONENTS' || item.comefrom=='LEAF SPRING ALLIED' || item.comefrom== 'TRAILER SUSPENSION'" style="border-bottom: none !important">
+							<button class="modal-trigger view-btn" (click)="addToCart(item,qtyN,'pro')">ADD TO CART</button>
+							 </div>
+
+                         
+							
+                             
+							</div>
+ 							 <div class="col-xs-6 " *ngIf="item.largeImgName">
+									<img  id="myImgN" src="assets/images/{{item.largeImgName}}" class="open-img">
+
+							  </div>   
+						 
+					</div>
+     
+	 </div>

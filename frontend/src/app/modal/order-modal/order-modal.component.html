@@ -1,0 +1,86 @@
+<div class="modal-sandbox"></div>
+    <div class="modal-box">
+                 
+					<div class="modal-header" >
+                        <div class="close-modal"><span CLASS="model-head-detail">ORDER DETAIL </span><span style="color:red; font-size:1.4rem;" (click)="activeModal.dismiss('Cross click')">&#10006;</span></div>
+
+                    </div>
+					<div class="modal-body-order" >
+
+                            <div class="col-xs-12">
+								<div class="part-name-modal">
+									<div class="part-model-left">
+										<p>Order Id</p>
+									</div><span class="colon-modal">:</span>
+									<div class="part-model-right">
+										<p> {{ Order.id }} </p>
+									</div>
+								</div>
+							</div>	
+							<div class="col-xs-12">
+										<div class="col-xs-4" >	
+										<div class="part-model-left">
+											<p>Name</p>
+										</div> 
+										</div>
+										
+										<div class="col-xs-4" >	
+										<div class="part-model-left">
+											<p>DBP</p>
+										</div> 
+										</div>
+										<div class="col-xs-4" >	
+										<div class="part-model-left">
+											<p>QTN</p>
+										</div> 
+										</div>
+							</div>
+								<div class="col-xs-12" *ngFor="let orderone of Order.orderlist" >
+									<div class="col-xs-4" >	
+									<div  >
+										
+										<div class="part-model-left">
+											<p> {{ orderone.name }} </p>
+										</div>
+									</div>
+									</div>
+									<div class="col-xs-4" >
+									<div  >
+										 
+										<div class="part-model-left">
+											<p> {{ orderone.dbpCurrency }} </p>
+										</div>
+									</div>
+									</div>
+									<div class="col-xs-4" >
+										<div  >
+											 
+											<div class="part-model-left">
+												<p> {{ orderone.qty }} </p>
+											</div>
+										</div>
+									</div>
+									
+								</div>
+							<div class="col-xs-12"   >
+							</div>
+							<div class="col-xs-12"  >
+							<div class="col-xs-8" >
+							</div>
+									<div class="col-xs-4" >
+									<div  >
+										 <div class="part-model-left">
+											<p>TOTAL</p>
+										</div> 
+										<div class="part-model-left">
+											<p> {{ Order.ttl }}  </p>
+										</div>
+									</div>
+									</div>
+							</div>	
+							
+ 							  
+						 
+					</div>
+     
+	 </div>

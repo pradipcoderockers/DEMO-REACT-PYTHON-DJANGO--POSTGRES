@@ -1,0 +1,87 @@
+<div class="right-data">
+    <div class="table-responsive">
+	
+		<!--<ng-flash-message></ng-flash-message>-->
+		<div id="closealert" class="alert alert-{{alertClass}} fade in alert-dismissible" style="margin-top:18px;" [hidden]="!successmsg">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+			 {{successmsg}}
+		</div>
+
+        <div class="row" [ngClass]="loaded?'show':'hide'">
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover">
+  <thead>
+      <tr>
+          <th>PRODUCT CODE</th>
+          <th >PRODUCT NAME</th>
+		  <th>TYPE</th>
+          <th>LENGTH[INCH]</th> 
+          <th>{{(!userName)?'MRP(Rs)':'DBP(Rs)'}}</th>
+          <th>DETAILED SPECIFICATIONS</th>
+		  <th>FAVOURITE</th>
+          <th>QR CODE</th>
+		  
+          <th>CART</th>
+      </tr>
+  </thead>
+  <tbody>
+      <ng-container *ngFor="let item of product"  >
+          <ng-container > <!-- *ngIf=" (item.dbp>0 || item.mrp>0) "-->
+    <tr>
+      <td>{{item.code | uppercase}}</td>
+     
+	   <td *ngIf="item.products.particuler"> {{ item.products.particuler | uppercase}}</td>
+	    <td>{{ item.name	| uppercase }}</td>
+      <td>{{ item.length?item.length:"N/A" }}</td>
+      <td>{{ (!userName)?item.mrp:item.dbp }}</td>
+      <td><button class="modal-trigger view-btn" (click)="open(content,item,item.products.particuler)">VIEW</button></td>
+	  <td><span  style="font-size: 20px !important;" data-toggle="modal" data-target="#myModal" (click) ="selectedprolist(item)" >  <i  class="fas fa-heart item-heart item-heart" style="color:red;"  ></i>  </span></td>
+      <td>
+          <div class="box"  >
+              <img src="assets/images/qr.png" class="my__img">
+          </div>
+           
+      </td>
+      <td><span><input name="Add To Cart" type="button" value="ADD TO CART" class="section-btn" (click) =" addToCartpro(item,'cart')"/></span></td>
+    </tr>
+    </ng-container>
+    </ng-container>
+  </tbody>
+  </table>
+  </div>
+  
+
+</div>
+</div>
+
+<div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog ">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" id="closebtn" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Favourite List </h4>
+        </div>
+        <div class="modal-body-fav">
+			<div class="col-xs-12 col-sm-12 hover">
+			  <div class="col-xs-3" *ngFor="let favouriteListone of favouriteList"  >
+				<span>
+					{{favouriteListone.name}}
+					<input type="radio" name="fvrtlistid" value="{{favouriteListone.id}}"  (click) = "addToCart(selectedproductArray,'fvrt',favouriteListone.id)" />
+				</span>
+			  </div>
+			  <div class="col-md-7">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			   </div>
+			  <div class="col-xs-12" *ngIf="favouriteList.length==0">
+			   Seems like you are not login or favourite List is empty!
+			  </div>
+ 			</div>
+		</div>
+         
+      </div>
+      
+    </div>
+  </div>
+
+ 

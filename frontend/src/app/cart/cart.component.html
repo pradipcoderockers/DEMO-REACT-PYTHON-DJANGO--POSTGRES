@@ -1,0 +1,67 @@
+<div class="right-data">
+<div class="main-box">
+    <div class="container">
+      <div class="table table-fav">
+        <table width="100%">
+      <thead>
+        <tr>
+          <th>IMAGE</th>
+          <th>NAME</th>
+          <th>PRODUCT CODE</th>
+          <th>QUANTITY</th>
+          <th>UNIT PRICE</th>
+          <th>TOTAL</th>
+          <th>REMOVE</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let cart of cartItems">
+        <td><a class="fav-frame"><img src="assets/images/{{cart.largeImgUrl}}"></a></td>
+        <td><a>{{cart.name}}</a></td>
+        <td><a>{{cart.code}}</a></td>
+        <td class="quan">
+		{{cart.qty}}
+		<!--<a class="fav-text"><input type="number" #qty value="{{cart.qty}}" min="1" (click)=updateQty(cart,qty.value)></a>
+		-->
+		</td>
+        <td><a>&#8377;{{cart.dbp}}</a></td>
+        <td><a>&#8377;{{cart.dbp * cart.qty}}</a></td>
+        <td><a class="fav-btn-remove" (click)="removeFromCart(cart)">REMOVE</a></td>
+        </tr>
+                
+        
+        
+      </tbody>
+    </table>
+      </div>
+      <div class="cart-total">
+      
+      <div class="text-right">
+               <h4>
+                 Sub-Total: &#8377;{{total}}
+                 
+                 
+               </h4>
+               <h4>Total: &#8377;{{total}}</h4>
+      </div>
+        
+      </div>
+      
+      <div class="fav-continue-shop">
+      <!-- <div class="text-left">
+        <a href="#"><i class="fas fa-arrow-left"></i>Continue Shopping</a>
+      </div> -->
+      <div class="text-right">
+        <div class="invoice-cart">
+          <div class="invoice">
+          <a (click)=generateInvoice()>Generate Invoice</a>
+        </div>
+        
+        </div>
+      </div>
+        
+      </div>
+    </div>
+</div>
+
+</div>

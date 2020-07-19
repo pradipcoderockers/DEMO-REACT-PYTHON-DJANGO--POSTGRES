@@ -1,0 +1,107 @@
+
+
+<div class="right-data">
+  <div class="slider">
+  <div id="myCarousel" class="carousel slide" data-ride="carousel">
+<!-- Indicators -->
+<ol class="carousel-indicators">
+<li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+<li data-target="#myCarousel" data-slide-to="1"></li>
+<li data-target="#myCarousel" data-slide-to="2"></li>
+</ol>
+
+<!-- Wrapper for slides -->
+<div class="carousel-inner">
+<div class="item active">
+ <img src="../../assets/images/slider-1.jpg"  style="width:100%; height:325px;">
+</div>
+
+<div class="item">
+ <img src="../../assets/images/slider-2.jpg"  style="width:100%; height:325px;">
+</div>
+
+<div class="item">
+ <img src="../../assets/images/slider-3.jpg"  style="width:100%; height:325px;">
+</div>
+</div>
+
+
+</div>
+
+
+
+
+
+</div>
+
+
+<div class="row" *ngIf="!segments">
+			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+					<div class="col-xs-4 col-sm-4 col-md-4 col-lg-4" >
+					</div>
+					<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" >
+           <img src ="assets/images/dribbble.gif" style="text-align:center;width:50%;" >
+					</div>
+			</div>
+    </div>
+
+<div class="product-segment">
+	<a href="#">PRODUCT CATEGORIES</a>
+  <div class="circle-product-segment"></div>
+	   <div class="line product-segment-line">   
+	</div>
+</div>
+ 
+
+
+<div class="product-segment-slider">
+           <div class="container">
+             <div class="product-segment-center">
+               <div class="row">
+                     <div class="col-xs-12 col-sm-4 col-md-4 col-lg-3 hover" *ngFor="let cat of categories">
+            <div class="car-model-box" (click)="openSubCat($event, cat,'cat')" >
+			   
+ 						  <a>
+							  <figure><img src="assets/images/{{cat.largeImgName}}" alt=""></figure>
+							  <h5>{{cat.name | uppercase}}</h5>
+						  </a>
+						  
+             </div>
+            
+          </div>
+               </div>
+             </div>
+           </div>
+             
+    </div>
+ 
+
+   <div class="product-segment">
+        <a href="#">PRODUCT BRAND</a>
+     <div class="circle"></div>
+           <div class="line product-brand-line">   
+        </div>
+    </div>
+     
+	<div class="product-segment-slider">
+           <div class="container">
+             <div class="product-segment-center">
+               <div class="row">
+                  <div *ngFor="let mod of models;" class="col-xs-12 col-sm-4 col-md-4 col-lg-3 hover">
+					<div class="car-model-1" (click)="openSubCat($event, mod,'pro')">
+							 
+								<a>
+							  <figure><img src="assets/images/{{mod.largeImgName}}" alt=""></figure>
+							  <h5>{{mod.name | uppercase }}</h5>
+ 						  </a>	
+							 
+						</div>
+					
+				  </div>             
+			  </div>
+             </div>
+           </div>
+       </div>
+	   
+
+ 

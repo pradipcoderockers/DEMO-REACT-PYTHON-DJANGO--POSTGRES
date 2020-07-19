@@ -1,0 +1,150 @@
+<div class="right-data">
+    <div class="table-responsive">
+	
+	<div class="row" *ngIf="productsloading">
+			
+			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-3 hover" >
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 " >
+					</div>
+					<img src ="assets/images/dribbble.gif" style="text-align:center;width:50%;" >
+			</div>
+    </div>
+	<!--
+	<ng-flash-message></ng-flash-message>
+	-->
+	
+	<div id="closealert" class="alert alert-{{alertClass}} fade in alert-dismissible" style="margin-top:18px;" [hidden]="!successmsg">
+			<a href="#" class="close" data-dismiss="alert" aria-label="close" title="close">×</a>
+			 {{successmsg}}
+		</div>
+	
+        <div class="row" [ngClass]="loaded?'show':'hide'">
+<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" >
+  <thead>
+    <tr>
+      <th>{{(rootCatprohelp == 'LIFT AXLE COMPONENTS' ||  rootCatprohelp== 'LEAF SPRING ALLIED' || rootCatprohelp== 'TRAILER SUSPENSION' )?'ITEMS':'PRODUCT CODE'}}</th>
+      <th *ngIf="rootCatprohelp != 'LEAF SPRING ALLIED' " >PART NO.</th>
+      <th *ngIf="rootCatprohelp != 'LEAF SPRING ALLIED' " >NAME</th>
+	  <th *ngIf="rootCatprohelp == 'LEAF SPRING' || rootCatprohelp == 'LEAF SPRING ALLIED'" >{{(rootCatprohelp == 'LEAF SPRING ALLIED')?'NAME':"SUITABLE FOR"}}</th>
+	  <th *ngIf="rootCatprohelp == 'LIFT AXLE COMPONENTS' || rootCatprohelp== 'TRAILER SUSPENSION'" >PACKING</th>
+	  
+ 	  <th *ngIf="rootCatprohelp == 'LEAF SPRING ALLIED'" >SIZE</th>
+	  
+	  
+      <th *ngIf="rootCatprohelp == 'LEAF SPRING'">C.H.&#8709;[mm] & POSITION</th>
+	   
+      <th *ngIf="rootCatprohelp == 'LEAF SPRING'">S.H.DETAIL[mm]</th>
+	  <th *ngIf="rootCatprohelp == 'LIFT AXLE COMPONENTS' || rootCatprohelp =='LEAF SPRING ALLIED' || rootCatprohelp== 'TRAILER SUSPENSION'">	  {{(!loginuser)?'MRP(Rs)':'DBP(Rs)'}}
+</th>
+	  
+	  <th *ngIf="rootCatprohelp == 'LIFT AXLE COMPONENTS' || rootCatprohelp =='LEAF SPRING ALLIED' || rootCatprohelp== 'TRAILER SUSPENSION'">DETAILED SPECIFICATIONS</th>
+	  <th *ngIf="rootCatprohelp == 'LIFT AXLE COMPONENTS' || rootCatprohelp =='LEAF SPRING ALLIED' || rootCatprohelp== 'TRAILER SUSPENSION'">FAVOURITE</th>
+      <th *ngIf="rootCatprohelp == 'LIFT AXLE COMPONENTS' || rootCatprohelp =='LEAF SPRING ALLIED' || rootCatprohelp== 'TRAILER SUSPENSION' ">QR CODE</th>
+	  
+	  
+	  <th  >{{(rootCatprohelp == 'LEAF SPRING' && loginuser)?'SECTION':(rootCatprohelp == 'LIFT AXLE COMPONENTS' || rootCatprohelp =='LEAF SPRING ALLIED' || rootCatprohelp== 'TRAILER SUSPENSION' )?'ADD TO CART':''}}</th>
+	  
+	  
+		  
+     
+  </tr>
+  </thead>
+   <tbody>
+    <tr *ngFor="let product of products">
+      <td><a *ngIf="rootCatprohelp == 'LEAF SPRING'" [routerLink]="['/item', product.id]" (click) =" createbreadcrumpro(product)">{{transform(product.code ) }}</a>
+	  <span *ngIf="rootCatprohelp == 'LIFT AXLE COMPONENTS' || rootCatprohelp =='LEAF SPRING ALLIED' || rootCatprohelp== 'TRAILER SUSPENSION' " >{{transform(product.code )}}</span>
+	  </td>
+      <td *ngIf="rootCatprohelp != 'LEAF SPRING ALLIED' " >{{ (product.partNumber)?(product.partNumber | uppercase):"N/A" }}</td>
+      <td *ngIf="rootCatprohelp != 'LEAF SPRING ALLIED' ">{{ (product.particuler)?(product.particuler | uppercase):"N/A" }}</td>
+	   <td *ngIf="rootCatprohelp == 'LEAF SPRING'" >{{ (product.suitableFor)?(product.suitableFor | uppercase):"N/A" }}</td>
+	   
+	    <td *ngIf="rootCatprohelp == 'LEAF SPRING ALLIED'" >{{ (product.application)?(product.application | uppercase):"N/A" }}</td>
+	   
+	   
+	   
+	   
+	   <td *ngIf="rootCatprohelp == 'LIFT AXLE COMPONENTS' || rootCatprohelp== 'TRAILER SUSPENSION'" >{{ (product.standardPackaging)?(product.standardPackaging | uppercase):"N/A" }}</td>
+	   
+	   
+	   <td *ngIf="rootCatprohelp == 'LEAF SPRING ALLIED'" >{{ (product.size)?( product.size | uppercase):"N/A" }}</td>
+
+      <td *ngIf="rootCatprohelp == 'LEAF SPRING'">{{ (product.chPosition)? ( product.chPosition | uppercase):"N/A" }}</td>
+      <td *ngIf="rootCatprohelp == 'LEAF SPRING'">{{ (product.shDetails)?(product.shDetails | uppercase):"N/A" }}</td>
+	  <td *ngIf="rootCatprohelp == 'LIFT AXLE COMPONENTS' || rootCatprohelp =='LEAF SPRING ALLIED' || rootCatprohelp== 'TRAILER SUSPENSION'">
+	  {{ (!loginuser)?product.mrpPrice:product.dealerPrice }}
+	  
+	  </td>
+	  
+	  
+	  <td *ngIf="rootCatprohelp == 'LIFT AXLE COMPONENTS' || rootCatprohelp =='LEAF SPRING ALLIED' || rootCatprohelp== 'TRAILER SUSPENSION'"><button class="modal-trigger view-btn" (click)="openN(content,product)" >VIEW</button></td>
+	  <td *ngIf="rootCatprohelp == 'LIFT AXLE COMPONENTS' || rootCatprohelp =='LEAF SPRING ALLIED' || rootCatprohelp== 'TRAILER SUSPENSION'" ><span  style="font-size: 20px !important;">  <i  class="fas fa-heart item-heart item-heart" style="color:red;" data-toggle="modal" data-target="#myModal" (click) =" selectedprolist(product)"></i>  </span></td>
+      <td *ngIf="rootCatprohelp == 'LIFT AXLE COMPONENTS' || rootCatprohelp =='LEAF SPRING ALLIED' || rootCatprohelp== 'TRAILER SUSPENSION'">
+          <div class="box"  >
+              <img src="assets/images/qr.png" class="my__img">
+          </div>
+          <div id="my__modal" class="my__modal">
+              <span class="close-qr" id="close">&times;</span>
+              <div class="modal__block" id="modal__block">
+                  <img id="img01" class="modal__content" alt="">
+                  <div id="caption"></div>
+              </div>
+          </div>
+      </td>
+	  
+	  
+	  
+	  <td >
+	  <a *ngIf="rootCatprohelp == 'LEAF SPRING' && loginuser" (click)="openN(content,product)"  style="cursor:pointer" class="modal-trigger view-btn"> SECTION</a>
+ 
+	  
+	  <span *ngIf="rootCatprohelp == 'LIFT AXLE COMPONENTS' || rootCatprohelp =='LEAF SPRING ALLIED' || rootCatprohelp== 'TRAILER SUSPENSION' " ><input name="Add To Cart" type="button" value="ADD TO CART" class="section-btn" (click) = "addToCartpro(product,'product')"/></span>
+	  
+	  
+	  </td>
+    </tr>
+  </tbody>
+  </table>
+  
+  
+  </div>
+  
+
+</div>
+</div>
+
+
+     
+  <div class="modal fade" id="myModal" role="dialog">
+    <div class="modal-dialog ">
+    
+      <!-- Modal content-->
+      <div class="modal-content">
+        <div class="modal-header">
+          <button type="button" class="close" id="closebtn" data-dismiss="modal">&times;</button>
+          <h4 class="modal-title">Favourite List </h4>
+        </div>
+        <div class="modal-body-fav">
+			<div class="col-xs-12 col-sm-12 hover">
+			  <div class="col-xs-3" *ngFor="let favouriteListone of favouriteList"  >
+				<span>
+					{{favouriteListone.name}}
+					<input type="radio" name="fvrtlistid" value="{{favouriteListone.id}}"  (click) = "addToCartpro(selectedproductArray,'fvrt','pro',favouriteListone.id)" />
+				</span>
+			  </div>
+			  <div class="col-xs-3">
+					<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+			   </div>
+			   <div class="col-xs-12" *ngIf="favouriteList && favouriteList.length==0"  >
+			   Seems like you are not login or favourite List is empty!
+			   </div>
+			  
+			   
+			</div>
+		</div>
+         
+      </div>
+      
+    </div>
+  </div>
+  
+ 

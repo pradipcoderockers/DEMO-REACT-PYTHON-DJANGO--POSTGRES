@@ -1,0 +1,56 @@
+<div class="right-data">
+    <div class="table-responsive">
+	<div class="row" *ngIf="productsloading">
+			
+			<div class="col-xs-12 col-sm-8 col-md-8 col-lg-3 hover" >
+					<div class="col-xs-6 col-sm-6 col-md-6 col-lg-6 " >
+					</div>
+					<img src ="assets/images/dribbble.gif" style="text-align:center;width:50%;" >
+			</div>
+    </div>
+	   
+		
+	  
+	
+<div class="row" [ngClass]="loaded?'show':'hide'">
+
+		<div style="margin: 0px 0px 0px 40%; cursor:pointer" (click)="openNalert()" >
+			<span  style="font-size: 20px !important;" title="Add favourite"> 
+				<i  class="fas fa-folder" style="color:black;" >Add favourite</i>  
+			</span>
+		</div>
+		
+	<table datatable [dtOptions]="dtOptions" [dtTrigger]="dtTrigger" class="row-border hover" >
+	  
+	    
+	   
+	  <thead>
+		<tr>
+		  <th>NAME</th>
+		  <th> DELETE </th>
+		   
+	    </tr>
+	  </thead>
+	  <tbody>
+		<tr *ngFor="let favouriteListOne of favouriteList">
+		  <td> 
+			<img _ngcontent-afa-c1="" alt="folder" src="../../assets/images/folder.png">
+			{{favouriteListOne.name}} 
+		  </td>
+		   
+		  <td>
+			<span  style="font-size: 20px !important;" (click)="deletefvt(favouriteListOne.id)"> 
+				<i  class="fas fa-trash" style="color:black;" ></i>  
+			</span>
+		  </td>
+		 
+		</tr>
+	  </tbody>
+	  </table>
+  
+  
+</div>
+  
+
+</div>
+</div>
