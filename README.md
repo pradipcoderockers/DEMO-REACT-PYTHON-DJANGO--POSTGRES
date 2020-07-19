@@ -1,21 +1,57 @@
+### Atlas Security Administrator Web Site
+#### Purpose 
 
-## Install [Python 3](https://www.python.org/) for your OS.
+Most of the Azure B2C user administration can only be done through API. We are looking to build a Web App in AWS using Python (maybe with Django framework) to manage the Azure B2C users through Graph API.
 
-## Install [Docker](https://docs.docker.com/engine/installation/) for your OS. 
+#### Requirements
 
-## Checkout this repo. Please notice that, if your OS is Windows, then you need to have at least version 10 (otherwise Docker can raise some exceptions); moreover ,before doing the checkout, please be sure to run the following git command:
-  ```
-  git config --global core.autocrlf input
-  ```
-  This command avoids the EOL (End Of Line) replacement. The latter is due to git which automatically reformat the file based on the current OS. As a conseguence, Linux-style EOL are replaced with Windows-style EOL.
+1. Audit trail – any action by the UNDP security administrator performed on the website needs to be logged.
+2. SSO – UNDP security administrators should authenticate into the application with their UNDP Azure credential.
 
-## Enter the Terminal or the Command Prompt at root level of the project
+#### Application functions
 
-## Run `docker-compose up` to first build and then run the project (it tooks several minutes the first time you run the command).
+1. Allow security administrators to search the Atlas users in B2C by name or email address (complete or partial) and display the user information.
+2. Allow security administrators to search the atlas user and reset its password. It should give the security administrator the option to send an email with the password directly to the user.
+3. Allow security administrators to enable or disable the Azure B2C user. This operation will need to support the batch function to allow the security administrator to paste the list of the name into the box and process the list of the users.
 
-## Go to [http://127.0.0.1:3001/](http://127.0.0.1:3001/) to see the React app running.
+---
 
+### API Middleware
 
-## Go to [http://127.0.0.1:3001/](http://127.0.0.1:8081/) to see the Django app running.
+#### Purpose 
 
+API endpoints are required for the Just In Time User (JIT) migration from Atlas LDAP into Azure B2C and future new user provisioning from Atlas. We are looking to build the app on Prem in Atlas environment using Python (maybe with Flask framework).
 
+#### Requirements
+
+1. Logging – all web calls received and returned should be recorded for the troubleshooting and monitoring purpose.
+
+#### Application functions
+
+1. JIT Migration User Endpoint
+API receives a web call with username and password.
+    - API validates with LDAP whether the username and password can bind.
+    - If the credential is validated, API should retrieve LDAP user attributes and call MS Graph to create Azure B2C user with those attributes. Then return success status code.
+    - If the credential is not validated, API returns a failed status code.
+2. User Creation Endpoint
+    - API receives web all with username, password and some other some user information.
+    - API should call MS Graph to create the user with those attributes.
+3. User Deactivation Endpoint
+    - API receive web call with username and status=deactivated
+    - API should call MS graph and set the B2C user to deactivated
+
+---
+
+### Logon Page
+
+#### Purpose
+
+Azure B2C standard logon page mainly support its default user flow which is Oauth driven with both Sign-in and Sign-up functions. In UNDP design, the standard user flow cannot be used.  Azure B2C does not offer much flexibility to customize the login page. Microsoft recommendation is to host a custom login page that allows editing CSS to change the look and feel of the page.
+
+---
+
+### Profile Edit Page
+
+#### Purpose
+
+Azure B2C only supports SP initiated login. Profile edit feature usually is a feature for the IDP initiated. In order to allow the user to edit their password self-service email address, a separate web app need to be hosted externally.
